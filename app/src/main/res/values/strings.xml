@@ -1,0 +1,62 @@
+<resources>
+    <string name="app_name">SiestaVl</string>
+
+    <string name="navigation_drawer_main">Главная</string>
+    <string name="navigation_drawer_login">Войти</string>
+    <string name="navigation_drawer_cart">Корзина</string>
+    <string name="navigation_drawer_about">О приложении</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example">Example action</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="tab_menu">Меню</string>
+    <string name="tab_films">Фильмы</string>
+
+    <string name="page">Page:</string>
+    <string name="foodkourt">foodkort</string>
+
+    <string-array name="navigation_drawer">
+        <item>@string/navigation_drawer_main</item>
+        <item>@string/navigation_drawer_login</item>
+        <item>@string/navigation_drawer_cart</item>
+        <item>@string/navigation_drawer_about</item>
+    </string-array>
+
+    <string-array name="cusine_list">
+        <item>Супы</item>
+        <item>Роллы</item>
+        <item>Завертоны</item>
+        <item>Сэндвичи</item>
+        <item>Салаты</item>
+        <item>Удоны</item>
+        <item>Десерты</item>
+        <item>Обеды</item>
+    </string-array>
+    <string-array name="bar_list">
+        <item>Нат.Кофе</item>
+        <item>Чай ( Пак-й, Зав-й )</item>
+        <item>Напитки собственного приготовления ( лимонад, морс и т.д.)</item>
+        <item>Мин.Вода</item>
+        <item>Молочные Коктейли</item>
+        <item>БА Коктейли - Хол</item>
+        <item>БА Коктейли - Гор.</item>
+        <item>Жевачка</item>
+    </string-array>
+    <string-array name="films_list">
+        <item>Мы из будущего</item>
+        <item>Золотая мина</item>
+        <item>Двое</item>
+        <item>Ширли-Мырли</item>
+        <item>Ларец Марии Медичи</item>
+        <item>Оставленные</item>
+        <item>Бессмертное кино</item>
+        <item>ЖКалифорникейшн</item>
+        <item>Безумный Макс-2: Воин дороги</item>
+    </string-array>
+
+
+</resources>
