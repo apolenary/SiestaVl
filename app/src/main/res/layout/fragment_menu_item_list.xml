@@ -4,12 +4,12 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.MenuGroupList"
+    tools:context=".fragments.MenuItemList"
     android:background="@android:color/white"
     android:id="@+id/fragment_mainLayout">
 
     <ListView
-        android:id="@+id/cusine_list"
+        android:id="@+id/group_items_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </ListView>

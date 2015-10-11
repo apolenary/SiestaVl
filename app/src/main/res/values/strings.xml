@@ -40,6 +40,7 @@
         <item>Десерты</item>
         <item>Обеды</item>
     </string-array>
+
     <string-array name="bar_list">
         <item>Нат.Кофе</item>
         <item>Чай ( Пак-й, Зав-й )</item>
@@ -50,6 +51,18 @@
         <item>БА Коктейли - Гор.</item>
         <item>Жевачка</item>
     </string-array>
+
+    <string-array name="items_list">
+        <item>Суп</item>
+        <item>Суп</item>
+        <item>Суп</item>
+        <item>Суп</item>
+        <item>Суп</item>
+        <item>Суп</item>
+        <item>Суп</item>
+        <item>Суп</item>
+    </string-array>
+
     <string-array name="films_list">
         <item>Мы из будущего</item>
         <item>Золотая мина</item>

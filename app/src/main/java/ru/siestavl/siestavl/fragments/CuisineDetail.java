@@ -2,6 +2,7 @@ package ru.siestavl.siestavl.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +14,9 @@ import ru.siestavl.siestavl.TabFragment;
 /**
  * Created by dmitry on 9/29/15.
  */
-public class CuisineDetail extends Fragment implements TabFragment{
+public class CuisineDetail extends RootFragment {
 
 
-    static PageFragmentListener firstPageListener;
     static private int btnId;
 
     public CuisineDetail() {
@@ -29,13 +29,16 @@ public class CuisineDetail extends Fragment implements TabFragment{
         return rootView;
     }
 
-    public static CuisineDetail newInstance(PageFragmentListener listener, int buttonId) {
-        firstPageListener = listener;
-        btnId = buttonId;
-        return new CuisineDetail();
-    }
+//    private void enterNextFragment(int buttonId) {
+//        CuisineDetail cuisineDetail = new CuisineDetail();
+//        Bundle bundle = new Bundle();
+//        bundle.putInt("btnId", buttonId);
+//        cuisineDetail.setArguments(bundle);
+//        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+//
+//        // Store the Fragment in stack
+//        transaction.addToBackStack(null);
+//        transaction.replace(R.id.fragment_mainLayout, cuisineDetail).commit();
+//    }
 
-    public void backPressed() {
-        firstPageListener.onSwitchToNextFragment(btnId);
-    }
 }

@@ -26,7 +26,7 @@ public class ViewPagerAdapterOld extends FragmentStatePagerAdapter {
                 //mFragmentAtPos0 = MenuGroupsList.newInstance(listener, btnId);
             }else{ // Instance of NextFragment
                 if (mFragmentAtPos0 instanceof MenuGroupsList && btnId != 4) {
-                    mFragmentAtPos0 = CuisineDetail.newInstance(listener, btnId);
+                    //mFragmentAtPos0 = CuisineDetail.newInstance(listener, btnId);
                 } else {
                   //  mFragmentAtPos0 = MenuTab.newInstance(listener);
                 }

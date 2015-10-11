@@ -15,15 +15,15 @@ import ru.siestavl.siestavl.R;
 /**
  * Created by dmitry on 10/9/15.
  */
-public class MenuGroupsList extends RootFragment {
+public class MenuItemList extends RootFragment {
 
     private ListView list;
     static private int btnId;
-    public MenuGroupsList() {}
+    public MenuItemList() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_menu_groups_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_menu_item_list, container, false);
         return view;
     }
 
@@ -31,12 +31,12 @@ public class MenuGroupsList extends RootFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ArrayAdapter adapter;
-        btnId = getArguments().getInt("btnId");
-        if (btnId == 1)
-            adapter = ArrayAdapter.createFromResource(getActivity(), R.array.cusine_list, android.R.layout.simple_list_item_1);
-        else
-            adapter = ArrayAdapter.createFromResource(getActivity(), R.array.bar_list, android.R.layout.simple_list_item_1);
-        list = (ListView) view.findViewById(R.id.cusine_list);
+       // btnId = getArguments().getInt("btnId");
+//        if (btnId == 1)
+            adapter = ArrayAdapter.createFromResource(getActivity(), R.array.items_list, android.R.layout.simple_list_item_1);
+//        else
+//            adapter = ArrayAdapter.createFromResource(getActivity(), R.array.bar_list, android.R.layout.simple_list_item_1);
+        list = (ListView) view.findViewById(R.id.group_items_list);
         list.setAdapter(adapter);
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -48,14 +48,14 @@ public class MenuGroupsList extends RootFragment {
     }
 
     private void enterNextFragment(int buttonId) {
-        MenuItemList menuItemList = new MenuItemList();
+        CuisineDetail cuisineDetail = new CuisineDetail();
         Bundle bundle = new Bundle();
         bundle.putInt("btnId", buttonId);
-        menuItemList.setArguments(bundle);
+        cuisineDetail.setArguments(bundle);
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
 
         // Store the Fragment in stack
         transaction.addToBackStack(null);
-        transaction.replace(R.id.fragment_mainLayout, menuItemList).commit();
+        transaction.replace(R.id.fragment_mainLayout, cuisineDetail).commit();
     }
 }
