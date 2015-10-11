@@ -4,11 +4,12 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.FilmsTab"
+    tools:context=".fragments.CuisineList"
+    android:background="@android:color/white"
     android:id="@+id/fragment_mainLayout">
 
     <ListView
-        android:id="@+id/films_list"
+        android:id="@+id/cusine_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </ListView>
@@ -17,4 +18,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
     </TextView>
+
 </FrameLayout>

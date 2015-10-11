@@ -13,10 +13,10 @@ import ru.siestavl.siestavl.TabFragment;
 /**
  * Created by dmitry on 9/29/15.
  */
-public class FilmDescription extends Fragment implements TabFragment{
+public class FilmDescription extends RootFragment{
 
 
-    static PageFragmentListener firstPageListener;
+   // static PageFragmentListener firstPageListener;
 
     public FilmDescription() {
 
@@ -28,12 +28,12 @@ public class FilmDescription extends Fragment implements TabFragment{
         return rootView;
     }
 
-    public static FilmDescription newInstance(PageFragmentListener listener) {
-        firstPageListener = listener;
-        return new FilmDescription();
-    }
+//    public static FilmDescription newInstance(PageFragmentListener listener) {
+//        //firstPageListener = listener;
+//        return new FilmDescription();
+//    }
 
-    public void backPressed() {
-        firstPageListener.onSwitchToNextFragment(5);
-    }
+//    public void backPressed() {
+//        firstPageListener.onSwitchToNextFragment(5);
+//    }
 }

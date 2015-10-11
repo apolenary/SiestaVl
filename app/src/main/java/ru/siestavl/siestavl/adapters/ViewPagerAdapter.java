@@ -1,101 +1,115 @@
 package ru.siestavl.siestavl.adapters;
 
-/**
- * Created by dmitry on 9/28/15.
- */
-
+import android.content.res.Resources;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.util.SparseArray;
+import android.view.ViewGroup;
 
-import ru.siestavl.siestavl.PageFragmentListener;
-import ru.siestavl.siestavl.fragments.CuisineDetail;
-import ru.siestavl.siestavl.fragments.CuisineList;
+import ru.siestavl.siestavl.R;
 import ru.siestavl.siestavl.fragments.FilmsTab;
 import ru.siestavl.siestavl.fragments.MenuTab;
+import ru.siestavl.siestavl.fragments.SettingsTab;
 
-public class ViewPagerAdapter extends FragmentStatePagerAdapter {
+/**
+ * Created by dmitry on 10/11/15.
+ */
+public class ViewPagerAdapter extends FragmentPagerAdapter {
 
-    private final class PageListener implements
-            PageFragmentListener {
-        public void onSwitchToNextFragment(int btnId) {
-            mFragmentManager.beginTransaction().remove(mFragmentAtPos0)
-                    .commit();
-            if (mFragmentAtPos0 instanceof MenuTab ||
-                    mFragmentAtPos0 instanceof CuisineDetail){
-                mFragmentAtPos0 = CuisineList.newInstance(listener, btnId);
-            }else{ // Instance of NextFragment
-                if (mFragmentAtPos0 instanceof CuisineList && btnId != 4) {
-                    mFragmentAtPos0 = CuisineDetail.newInstance(listener, btnId);
-                } else {
-                    mFragmentAtPos0 = MenuTab.newInstance(listener);
-                }
-            }
-            notifyDataSetChanged();
-        }
-    }
+    private final Resources resources;
+    SparseArray<Fragment> registeredFragments = new SparseArray<Fragment>();
 
-    CharSequence Titles[]; // This will Store the Titles of the Tabs which are Going to be passed when ViewPagerAdapter is created
-    int NumbOfTabs; // Store the number of tabs, this will also be passed when the ViewPagerAdapter is created
-    private Fragment mFragmentAtPos0;
-    private Fragment mFragmentAtPos1;
-    private final FragmentManager mFragmentManager;
-    PageListener listener = new PageListener();
-
-    // Build a Constructor and assign the passed Values to appropriate values in the class
-//    public ViewPagerAdapter(FragmentManager fm,CharSequence mTitles[], int mNumbOfTabsumb) {
-    public ViewPagerAdapter(FragmentManager fm,CharSequence mTitles[], int mNumbOfTabsumb) {
+    /**
+     * Create pager adapter
+     *
+     * @param resources
+     * @param fm
+     */
+    public ViewPagerAdapter(final Resources resources, FragmentManager fm) {
         super(fm);
-        mFragmentManager = fm;
-        this.Titles = mTitles;
-        this.NumbOfTabs = mNumbOfTabsumb;
-
+        this.resources = resources;
     }
 
-    //This method return the fragment for the every position in the View Pager
     @Override
     public Fragment getItem(int position) {
-
-        if(position == 0) // if the position is 0 we are returning the First tab
-        {
-            if (mFragmentAtPos0 == null) {
-                mFragmentAtPos0 = MenuTab.newInstance(listener);
-            }
-            return mFragmentAtPos0;
+        final Fragment result;
+        switch (position) {
+            case 0:
+                // First Fragment of First Tab
+                result = new MenuTab();
+                break;
+            case 1:
+                // First Fragment of Second Tab
+                result = new FilmsTab();
+                break;
+            case 2:
+                // First Fragment of Third Tab
+                result = new SettingsTab();
+                break;
+            default:
+                result = null;
+                break;
         }
-        else             // As we are having 2 tabs if the position is now 0 it must be 1 so we are returning second tab
-        {
-            return new FilmsTab();
-        }
 
-
+        return result;
     }
-
-    // This method return the titles for the Tabs in the Tab Strip
-
-    @Override
-    public CharSequence getPageTitle(int position) {
-        return Titles[position];
-    }
-
-    // This method return the Number of tabs for the tabs Strip
 
     @Override
     public int getCount() {
-        return NumbOfTabs;
+        return 3;
     }
 
     @Override
-    public int getItemPosition(Object object) {
-        if (object instanceof MenuTab && mFragmentAtPos0 instanceof CuisineList) {
-            return POSITION_NONE;
-        } else if (object instanceof CuisineList && mFragmentAtPos0 instanceof CuisineDetail) {
-            return POSITION_NONE;
-        } else if (object instanceof CuisineDetail && mFragmentAtPos0 instanceof CuisineList) {
-            return POSITION_NONE;
-        } else if (object instanceof CuisineList && mFragmentAtPos0 instanceof MenuTab) {
-            return POSITION_NONE;
+    public CharSequence getPageTitle(final int position) {
+        switch (position) {
+            case 0:
+                return resources.getString(R.string.page_1);
+            case 1:
+                return resources.getString(R.string.page_2);
+            case 2:
+                return resources.getString(R.string.page_3);
+            default:
+                return null;
         }
-        return POSITION_UNCHANGED;
+    }
+
+    /**
+     * On each Fragment instantiation we are saving the reference of that Fragment in a Map
+     * It will help us to retrieve the Fragment by position
+     *
+     * @param container
+     * @param position
+     * @return
+     */
+    @Override
+    public Object instantiateItem(ViewGroup container, int position) {
+        Fragment fragment = (Fragment) super.instantiateItem(container, position);
+        registeredFragments.put(position, fragment);
+        return fragment;
+    }
+
+    /**
+     * Remove the saved reference from our Map on the Fragment destroy
+     *
+     * @param container
+     * @param position
+     * @param object
+     */
+    @Override
+    public void destroyItem(ViewGroup container, int position, Object object) {
+        registeredFragments.remove(position);
+        super.destroyItem(container, position, object);
+    }
+
+
+    /**
+     * Get the Fragment by position
+     *
+     * @param position tab position of the fragment
+     * @return
+     */
+    public Fragment getRegisteredFragment(int position) {
+        return registeredFragments.get(position);
     }
 }

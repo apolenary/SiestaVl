@@ -30,12 +30,16 @@ public class MainActivity extends FragmentActivity
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
-
+    private TabContainer tabContainer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        if (savedInstanceState != null) {
+            if (getSupportFragmentManager().getFragments().get(0) instanceof  TabContainer)
+                tabContainer = (TabContainer) getSupportFragmentManager().getFragments().get(0);
+        }
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
@@ -53,6 +57,7 @@ public class MainActivity extends FragmentActivity
         switch (position) {
             case 0:
                 fragment = new TabContainer();
+                tabContainer = (TabContainer) fragment;
                 break;
             case 1:
                 fragment = new FilmDescription();
@@ -127,7 +132,11 @@ public class MainActivity extends FragmentActivity
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        if (!tabContainer.onBackPressed()) {
+            super.onBackPressed();
+        } else {
+            //Some thing here
+        }
     }
 
     /**

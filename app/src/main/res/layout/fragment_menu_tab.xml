@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    tools:context=".fragments.MenuTab"
+    android:id="@+id/fragment_mainLayout">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
 
     <!--TextView
@@ -13,11 +21,12 @@
         android:id="@+id/textView"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" /-->
+
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/ibtnFoodkourt"
-        android:src="@drawable/foodkourt" />
+        android:src="@drawable/foodkourt"/>
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -25,5 +34,5 @@
         android:id="@+id/ibtnBar"
         android:src="@drawable/bar" />
 
-
-</LinearLayout>
+    </LinearLayout>
+</FrameLayout>

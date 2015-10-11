@@ -19,6 +19,10 @@
     <string name="page">Page:</string>
     <string name="foodkourt">foodkort</string>
 
+    <string name="page_1">Кухня</string>
+    <string name="page_2">Фильмы</string>
+    <string name="page_3">Что-то там</string>
+
     <string-array name="navigation_drawer">
         <item>@string/navigation_drawer_main</item>
         <item>@string/navigation_drawer_login</item>
