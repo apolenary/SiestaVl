@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import ru.siestavl.siestavl.R;
+import ru.siestavl.siestavl.adapters.MenuGroupAdapter;
 
 /**
  * Created by dmitry on 10/9/15.
@@ -30,14 +31,17 @@ public class MenuGroupsList extends RootFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ArrayAdapter adapter;
-        btnId = getArguments().getInt("btnId");
-        if (btnId == 1)
-            adapter = ArrayAdapter.createFromResource(getActivity(), R.array.cusine_list, android.R.layout.simple_list_item_1);
-        else
-            adapter = ArrayAdapter.createFromResource(getActivity(), R.array.bar_list, android.R.layout.simple_list_item_1);
+//        ArrayAdapter adapter;
+//        btnId = getArguments().getInt("btnId");
+//        if (btnId == 1)
+//            adapter = ArrayAdapter.createFromResource(getActivity(), R.array.cusine_list, android.R.layout.simple_list_item_1);
+//        else
+//            adapter = ArrayAdapter.createFromResource(getActivity(), R.array.bar_list, android.R.layout.simple_list_item_1);
         list = (ListView) view.findViewById(R.id.cusine_list);
-        list.setAdapter(adapter);
+
+//        list.setAdapter(adapter);
+        MenuGroupAdapter menuAdapter = new MenuGroupAdapter(getContext());
+        list.setAdapter(menuAdapter);
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

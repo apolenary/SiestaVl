@@ -10,7 +10,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
 import ru.siestavl.siestavl.R;
+import ru.siestavl.siestavl.adapters.DishListAdapter;
+import ru.siestavl.siestavl.entity.Dish;
 
 /**
  * Created by dmitry on 10/9/15.
@@ -30,12 +34,15 @@ public class MenuItemList extends RootFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ArrayAdapter adapter;
+        //ArrayAdapter adapter;
        // btnId = getArguments().getInt("btnId");
 //        if (btnId == 1)
-            adapter = ArrayAdapter.createFromResource(getActivity(), R.array.items_list, android.R.layout.simple_list_item_1);
+          //  adapter = ArrayAdapter.createFromResource(getActivity(), R.array.items_list, android.R.layout.simple_list_item_1);
 //        else
 //            adapter = ArrayAdapter.createFromResource(getActivity(), R.array.bar_list, android.R.layout.simple_list_item_1);
+
+        ArrayList<Dish> dishesListst = getDishesList();
+        DishListAdapter adapter = new DishListAdapter(getContext(), dishesListst);
         list = (ListView) view.findViewById(R.id.group_items_list);
         list.setAdapter(adapter);
 
@@ -57,5 +64,36 @@ public class MenuItemList extends RootFragment {
         // Store the Fragment in stack
         transaction.addToBackStack(null);
         transaction.replace(R.id.fragment_mainLayout, cuisineDetail).commit();
+    }
+
+    private ArrayList<Dish> getDishesList() {
+        ArrayList<Dish> list = new ArrayList<>();
+        Dish dish;
+
+        dish = new Dish();
+        dish.setName("Soup 1");
+        dish.setShortDescription("This is delicious dish");
+        dish.setDescription("This is full description for Soup 1. Here should be more lines");
+        dish.setPrice(100);
+        dish.setDishIndex(1);
+        list.add(dish);
+
+        dish = new Dish();
+        dish.setName("Soup 2");
+        dish.setShortDescription("This is one more delicious dish");
+        dish.setDescription("This is full description for Soup 2. Here should be more lines");
+        dish.setPrice(120);
+        dish.setDishIndex(2);
+        list.add(dish);
+
+        dish = new Dish();
+        dish.setName("Soup 3");
+        dish.setShortDescription("This is one more delicious dish");
+        dish.setDescription("This is full description for Soup 3. Here should be more lines");
+        dish.setPrice(80);
+        dish.setDishIndex(3);
+        list.add(dish);
+
+        return list;
     }
 }
