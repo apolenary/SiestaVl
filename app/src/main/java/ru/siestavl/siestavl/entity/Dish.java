@@ -1,9 +1,11 @@
 package ru.siestavl.siestavl.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by dmitry on 10/13/15.
  */
-public class Dish {
+public class Dish implements Serializable{
     private String name;
     private String description;
     private String shortDescription;

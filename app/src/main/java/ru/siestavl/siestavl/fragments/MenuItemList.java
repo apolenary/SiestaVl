@@ -22,6 +22,7 @@ import ru.siestavl.siestavl.entity.Dish;
 public class MenuItemList extends RootFragment {
 
     private ListView list;
+    private ArrayList<Dish> dishesListst;
     static private int btnId;
     public MenuItemList() {}
 
@@ -41,7 +42,7 @@ public class MenuItemList extends RootFragment {
 //        else
 //            adapter = ArrayAdapter.createFromResource(getActivity(), R.array.bar_list, android.R.layout.simple_list_item_1);
 
-        ArrayList<Dish> dishesListst = getDishesList();
+        dishesListst = getDishesList();
         DishListAdapter adapter = new DishListAdapter(getContext(), dishesListst);
         list = (ListView) view.findViewById(R.id.group_items_list);
         list.setAdapter(adapter);
@@ -54,10 +55,11 @@ public class MenuItemList extends RootFragment {
         });
     }
 
-    private void enterNextFragment(int buttonId) {
+    private void enterNextFragment(int position) {
         CuisineDetail cuisineDetail = new CuisineDetail();
         Bundle bundle = new Bundle();
-        bundle.putInt("btnId", buttonId);
+        //bundle.putInt("btnId", buttonId);
+        bundle.putSerializable("dish_key", dishesListst.get(position));
         cuisineDetail.setArguments(bundle);
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
 
