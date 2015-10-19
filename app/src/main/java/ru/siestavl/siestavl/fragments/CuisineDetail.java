@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 import ru.siestavl.siestavl.PageFragmentListener;
 import ru.siestavl.siestavl.R;
 import ru.siestavl.siestavl.TabFragment;
+import ru.siestavl.siestavl.entity.Basket;
 import ru.siestavl.siestavl.entity.Dish;
 
 /**
@@ -34,6 +36,12 @@ public class CuisineDetail extends RootFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_cuisine_detail, container, false);
+        rootView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return true;
+            }
+        });
         dish = (Dish)getArguments().getSerializable("dish_key");
 
         ImageView image = (ImageView)rootView.findViewById(R.id.cuisine_detail_image);
@@ -45,7 +53,9 @@ public class CuisineDetail extends RootFragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(),"Product is added to ORDER", Toast.LENGTH_SHORT);
+                Basket order = Basket.getInstance();
+                order.setDish(dish);
+                Toast.makeText(getContext(), "Order Lenth is " + order.getCountOfDishes() , Toast.LENGTH_SHORT);
             }
         });
         image.setImageResource(R.drawable.ic_soup5);

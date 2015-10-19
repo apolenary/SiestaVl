@@ -35,8 +35,8 @@ public class TabContainer extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_tab_container, container, false);
-//        rootView.setFocusableInTouchMode(true);
-//        rootView.requestFocus();
+        rootView.setFocusableInTouchMode(true);
+        rootView.requestFocus();
 //        rootView.setOnKeyListener(new View.OnKeyListener() {
 //            @Override
 //            public boolean onKey(View v, int keyCode, KeyEvent event) {
