@@ -51,6 +51,18 @@
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Заказать"
+                android:id="@+id/dishList_order"
+                android:layout_alignBottom="@+id/dishList_description"
+                android:layout_alignRight="@+id/dishList_description"
+                android:layout_alignEnd="@+id/dishList_description"
+                android:focusable="false"
+                android:focusableInTouchMode="false" />
+
         </RelativeLayout>
     </FrameLayout>
 </RelativeLayout>
