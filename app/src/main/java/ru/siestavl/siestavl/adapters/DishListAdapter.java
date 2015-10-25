@@ -2,7 +2,6 @@ package ru.siestavl.siestavl.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -12,9 +11,11 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import ru.siestavl.siestavl.AdapterCallback;
 import ru.siestavl.siestavl.R;
-import ru.siestavl.siestavl.entity.Basket;
+import ru.siestavl.siestavl.entity.Order;
 import ru.siestavl.siestavl.entity.Dish;
+import ru.siestavl.siestavl.fragments.NumberDialog;
 
 /**
  * Created by dmitry on 10/13/15.
@@ -22,16 +23,19 @@ import ru.siestavl.siestavl.entity.Dish;
 public class DishListAdapter extends BaseAdapter {
 
     private final Context context;
+    private NumberDialog numDiag;
+    private AdapterCallback adapterCallback;
     ArrayList<Dish> dishesList;
     int [] images = {R.drawable.ic_soup1,R.drawable.ic_soup2,
             R.drawable.ic_soup3, R.drawable.ic_soup4, R.drawable.ic_soup5};
-    Basket order;
+    Order order;
 
-    public DishListAdapter(Context context, ArrayList<Dish> dishesList) {
+    public DishListAdapter(Context context, ArrayList<Dish> dishesList, AdapterCallback callback) {
         this.context = context;
         //dishesList = context.getResources().getStringArray(R.array.cusine_list);
         this.dishesList = dishesList;
-        order = Basket.getInstance();
+        order = Order.getInstance();
+        this.adapterCallback = callback;
     }
 
     @Override
@@ -73,10 +77,10 @@ public class DishListAdapter extends BaseAdapter {
         button_order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                order.setDish(dish);
+                //order.setDish(dish);
+                adapterCallback.onMethodCallback(dish);
             }
         });
-
 
         return row;
     }

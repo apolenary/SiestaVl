@@ -7,28 +7,32 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
+import ru.siestavl.siestavl.AdapterCallback;
 import ru.siestavl.siestavl.R;
 import ru.siestavl.siestavl.adapters.DishListAdapter;
 import ru.siestavl.siestavl.entity.Dish;
+import ru.siestavl.siestavl.entity.Order;
 
 /**
  * Created by dmitry on 10/9/15.
  */
-public class MenuItemList extends RootFragment {
+public class MenuItemList extends RootFragment implements AdapterCallback, NumberDialog.NumberPickerListener {
 
     private ListView list;
     private ArrayList<Dish> dishesListst;
     static private int btnId;
     public MenuItemList() {}
+    private Dish dishToOrder;
+    private Order order;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_menu_item_list, container, false);
+        order = Order.getInstance();
         return view;
     }
 
@@ -43,7 +47,7 @@ public class MenuItemList extends RootFragment {
 //            adapter = ArrayAdapter.createFromResource(getActivity(), R.array.bar_list, android.R.layout.simple_list_item_1);
 
         dishesListst = getDishesList();
-        DishListAdapter adapter = new DishListAdapter(getContext(), dishesListst);
+        DishListAdapter adapter = new DishListAdapter(getContext(), dishesListst, this);
         list = (ListView) view.findViewById(R.id.group_items_list);
         list.setAdapter(adapter);
 
@@ -97,5 +101,20 @@ public class MenuItemList extends RootFragment {
         list.add(dish);
 
         return list;
+    }
+
+    @Override
+    public void onMethodCallback(Dish dish) {
+        dishToOrder = dish;
+        NumberDialog dialog = new NumberDialog();
+        dialog.setTargetFragment(this, 0);
+        dialog.show(getFragmentManager(), "Количество");
+        //Toast.makeText(getContext(), req, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void updateResult(int inputInt) {
+        order.setDish(dishToOrder, inputInt);
+
     }
 }

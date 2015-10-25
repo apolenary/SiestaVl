@@ -6,20 +6,41 @@
     tools:context=".fragments.SettingsTab"
     android:id="@+id/fragment_mainLayout">
 
-    <TextView
-        android:id="@+id/settings_temp_text"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="fragment_settings1"
-        android:textAppearance="?android:textAppearanceLarge"
-        android:textSize="36sp"/>
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <TextView
+            android:id="@+id/settings_temp_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="summa"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:textSize="36sp"
+            android:layout_alignBottom="@+id/settings_button"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/settings_button"
-        android:layout_gravity="center" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Button"
+            android:id="@+id/settings_button"
+            android:layout_gravity="center"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/settings_listView"
+            android:layout_below="@+id/settings_temp_text"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:dividerHeight="12dp" />
+
+    </RelativeLayout>
+
 
 
 </FrameLayout>

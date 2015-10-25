@@ -1,8 +1,6 @@
 package ru.siestavl.siestavl.fragments;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -12,21 +10,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import ru.siestavl.siestavl.PageFragmentListener;
 import ru.siestavl.siestavl.R;
-import ru.siestavl.siestavl.TabFragment;
-import ru.siestavl.siestavl.entity.Basket;
+import ru.siestavl.siestavl.entity.Order;
 import ru.siestavl.siestavl.entity.Dish;
 
 /**
  * Created by dmitry on 9/29/15.
  */
-public class CuisineDetail extends RootFragment {
+public class CuisineDetail extends RootFragment implements NumberDialog.NumberPickerListener {
 
 
     static private int btnId;
     private Dish dish;
     Button button;
+    NumberDialog dialog;
+    Order order;
 
     public CuisineDetail() {
 
@@ -50,12 +48,17 @@ public class CuisineDetail extends RootFragment {
         TextView description = (TextView)rootView.findViewById(R.id.cuisine_detail_description);
         Button button = (Button)rootView.findViewById(R.id.cuisine_detail_button);
 
+        dialog = new NumberDialog();
+        dialog.setTargetFragment(this, 0);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Basket order = Basket.getInstance();
-                order.setDish(dish);
-                Toast.makeText(getContext(), "Order Lenth is " + order.getCountOfDishes() , Toast.LENGTH_SHORT);
+                Order order = Order.getInstance();
+                /*order.setDish(dish);
+                Toast.makeText(getContext(), "Order Lenth is " + order.getCountOfDishes() , Toast.LENGTH_SHORT);*/
+
+                dialog.show(getFragmentManager(), "Количество");
             }
         });
         image.setImageResource(R.drawable.ic_soup5);
@@ -69,8 +72,15 @@ public class CuisineDetail extends RootFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        order = Order.getInstance();
 
     }
+
+    @Override
+    public void updateResult(int inputInt) {
+        order.setDish(dish, inputInt);
+    }
+
     //    private void enterNextFragment(int buttonId) {
 //        CuisineDetail cuisineDetail = new CuisineDetail();
 //        Bundle bundle = new Bundle();

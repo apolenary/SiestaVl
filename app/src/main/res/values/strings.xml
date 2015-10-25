@@ -23,6 +23,9 @@
     <string name="page_2">Фильмы</string>
     <string name="page_3">Что-то там</string>
 
+    <string name="Yes">Выбрать</string>
+    <string name="Cancel">Отмена</string>
+
     <string-array name="navigation_drawer">
         <item>@string/navigation_drawer_main</item>
         <item>@string/navigation_drawer_login</item>

@@ -50,18 +50,18 @@
                 android:layout_toRightOf="@+id/dishList_image"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true" />
+                android:layout_above="@+id/dishList_price" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Заказать"
                 android:id="@+id/dishList_order"
-                android:layout_alignBottom="@+id/dishList_description"
-                android:layout_alignRight="@+id/dishList_description"
-                android:layout_alignEnd="@+id/dishList_description"
                 android:focusable="false"
-                android:focusableInTouchMode="false" />
+                android:focusableInTouchMode="false"
+                android:layout_below="@+id/dishList_description"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
 
         </RelativeLayout>
     </FrameLayout>

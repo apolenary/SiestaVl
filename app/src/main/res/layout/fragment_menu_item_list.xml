@@ -11,7 +11,9 @@
     <ListView
         android:id="@+id/group_items_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:dividerHeight="10dp"
+        android:elevation="10dp">
     </ListView>
     <TextView
         android:id="@android:id/empty"
